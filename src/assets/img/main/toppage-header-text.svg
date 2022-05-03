@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="468" height="185" viewBox="0 0 468 185">
+  <defs>
+    <filter id="Let_" x="1" y="0" width="178" height="107" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="s_play_golf_" x="123" y="0" width="345" height="107" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="All_over_JAPAN" x="0" y="78" width="452" height="107" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_62" data-name="Group 62" transform="translate(-1059 -287)">
+    <g transform="matrix(1, 0, 0, 1, 1059, 287)" filter="url(#Let_)">
+      <text id="Let_2" data-name="Let’" transform="translate(10 77)" fill="#fff" font-size="61" font-family="SourceHanSansCN-Heavy, Source Han Sans CN" font-weight="800"><tspan x="0" y="0">Let’</tspan></text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1059, 287)" filter="url(#s_play_golf_)">
+      <text id="s_play_golf_2" data-name="s play golf " transform="translate(132 77)" fill="#fff" font-size="61" font-family="SourceHanSansCN-Heavy, Source Han Sans CN" font-weight="800"><tspan x="0" y="0">s play golf </tspan></text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1059, 287)" filter="url(#All_over_JAPAN)">
+      <text id="All_over_JAPAN-2" data-name="All over JAPAN" transform="translate(10 155)" fill="#fff" font-size="61" font-family="SourceHanSansCN-Heavy, Source Han Sans CN" font-weight="800" letter-spacing="-0.021em"><tspan x="0" y="0">All over JAPAN</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="929" height="55" viewBox="0 0 929 55">
+  <g id="Group_59" data-name="Group 59" transform="translate(-495.5 -2051)">
+    <line id="Line_81" data-name="Line 81" x2="301" transform="translate(1123.5 2093.5)" fill="none" stroke="#b82933" stroke-width="1" stroke-dasharray="3"/>
+    <line id="Line_84" data-name="Line 84" x2="301" transform="translate(495.5 2093.5)" fill="none" stroke="#b82933" stroke-width="1" stroke-dasharray="3"/>
+    <rect id="Rectangle_51" data-name="Rectangle 51" width="303" height="14" transform="translate(808 2089)" fill="#d9d9d9"/>
+    <text id="エリアから検索" transform="translate(827 2095)" fill="#b82933" font-size="38" font-family="SourceHanSansCN-Medium, Source Han Sans CN" font-weight="500"><tspan x="0" y="0">エリアから検索</tspan></text>
+    <circle id="Ellipse_8" data-name="Ellipse 8" cx="4.5" cy="4.5" r="4.5" transform="translate(790 2089)" fill="#b82933"/>
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="4.5" cy="4.5" r="4.5" transform="translate(1119 2089)" fill="#b82933"/>
+  </g>
+</svg>
