@@ -59,22 +59,22 @@ const HeaderSection = () => {
           </div> */}
 
           <div className="mene-container-1">
-            <Link to="/commingsoon">ゴルフ場or宿泊orレンタカー</Link>
+            <Link to="/lorem" state={{ title: "ゴルフ場or宿泊orレンタカー" }}>ゴルフ場or宿泊orレンタカー</Link>
             <span />
-            <Link to="/commingsoon">都道府県</Link>
+            <Link to="/lorem" state={{ title: "都道府県" }}>都道府県</Link>
             <span />
-            <Link to="/commingsoon">チェエクイン</Link>
+            <Link to="/lorem" state={{ title: "チェエクイン" }}>チェエクイン</Link>
             <span />
-            <Link to="/commingsoon">チェックアウト</Link>
+            <Link to="/lorem" state={{ title: "チェックアウト" }}>チェックアウト</Link>
             <span />
-            <Link to="/commingsoon">人数</Link>
+            <Link to="/lorem" state={{ title: "人数" }}>人数</Link>
           </div>
 
           <div className="menu-container-2">
-            <Link className="right" to="/commingsoon">
+            <Link className="right" to="/lorem" state={{ title: "メンバー（カスタマー）登録" }}>
               メンバー（カスタマー）登録
             </Link>
-            <Link className="left" to="/commingsoon">
+            <Link className="left" to="/lorem" state={{ title: "ベンダー（ゴルフ場・宿泊先・観光情報）登録" }}>
               ベンダー（ゴルフ場・宿泊先・観光情報）登録
             </Link>
           </div>

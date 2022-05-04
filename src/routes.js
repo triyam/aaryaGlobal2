@@ -12,6 +12,7 @@ import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 
 import HomePage from './components/Homepage';
+import Lorem from './components/Lorem';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -43,6 +44,7 @@ export default function Router() {
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },
+        { path: 'lorem', element: <Lorem/>},
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
