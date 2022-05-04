@@ -50,7 +50,7 @@ export default function RegisterForm() {
     if (values.password === values.confirmPassword) {
       axios
         .post(
-          'http://localhost:5000/register',
+          'https://aryaglobal2.herokuapp.com/register',
           {
             username: values.firstName.concat(' ', values.lastName),
             email: values.email,
