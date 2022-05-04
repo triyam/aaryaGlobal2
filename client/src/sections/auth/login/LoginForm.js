@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
 import { Link, Stack, Checkbox, TextField, IconButton, InputAdornment, FormControlLabel } from '@mui/material';
@@ -9,8 +10,6 @@ import { LoadingButton } from '@mui/lab';
 import Iconify from '../../../dashboardComponents/Iconify';
 
 // ----------------------------------------------------------------------
-
-
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -30,18 +29,61 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
+      // handleSubmit(e);
+      // SubmitHandler(e);
       navigate('/dashboard', { replace: true });
     },
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
+  // const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const { errors, touched, values, isSubmitting, getFieldProps } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const config = {
+      header: {
+        'Content-Type': 'application/json',
+      },
+    };
+    if (values.email !== '' && values.password !== '') {
+      console.log(values);
+      // console.log(formik.initialValues.email);
+      // console.log(formik.initialValues.password);
+      axios
+        .post(
+          'http://localhost:5000/signin',
+          {
+            email: values.email,
+            password: values.password,
+          },
+          config
+        )
+        .then((response) => {
+          console.log(response.data);
+          // window.alert("Login Successful!");
+          console.log('Login Successful!');
+          localStorage.setItem('jwt', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          navigate('/dashboard');
+        })
+        .catch((error) => {
+          console.log(error);
+          window.alert('Invalid Credentials!');
+          console.log('Invalid Credentials!');
+        });
+      // alert('Login Success');
+    } else {
+      alert('Please Enter Valid Details');
+      // console.log(values);
+    }
+  };
 
   return (
     <FormikProvider value={formik}>
+      {/* <Form autoComplete="off" noValidate onSubmit={handleSubmit}> */}
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <TextField
@@ -49,7 +91,7 @@ export default function LoginForm() {
             autoComplete="username"
             type="email"
             label="Email address"
-            {...getFieldProps('email')}
+            {...formik.getFieldProps('email')}
             error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
           />
@@ -59,7 +101,7 @@ export default function LoginForm() {
             autoComplete="current-password"
             type={showPassword ? 'text' : 'password'}
             label="Password"
-            {...getFieldProps('password')}
+            {...formik.getFieldProps('password')}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

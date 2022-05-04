@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -28,6 +29,7 @@ export default function RegisterForm() {
       lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
@@ -35,7 +37,46 @@ export default function RegisterForm() {
     },
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+  // const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+  const { errors, touched, values, isSubmitting, getFieldProps } = formik;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const config = {
+      header: {
+        'Content-Type': 'application/json',
+      },
+    };
+    if (values.password === values.confirmPassword) {
+      axios
+        .post(
+          'http://localhost:5000/register',
+          {
+            username: values.firstName.concat(' ', values.lastName),
+            email: values.email,
+            password: values.password,
+            confirmPassword: values.confirmPassword,
+          },
+          config
+        )
+        .then((response) => {
+          console.log(response);
+          // window.alert("Registration Successful!");
+          console.log('Registration Successful!');
+          navigate('/login');
+        })
+        .catch((error) => {
+          console.log(error);
+          window.alert('Email already exists ');
+          console.log('Email already exists !');
+        });
+      // alert('Signup Success');
+      console.log(values);
+    } else {
+      alert("Password Don't Match");
+      console.log(values);
+    }
+  };
 
   return (
     <FormikProvider value={formik}>
@@ -84,6 +125,24 @@ export default function RegisterForm() {
                 </InputAdornment>
               ),
             }}
+            error={Boolean(touched.password && errors.password)}
+            helperText={touched.password && errors.password}
+          />
+          <TextField
+            fullWidth
+            autoComplete="current-password"
+            type="text"
+            label="Confirm Password"
+            {...getFieldProps('confirmPassword')}
+            // InputProps={{
+            //   endAdornment: (
+            //     <InputAdornment position="end">
+            //       <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
+            //         <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+            //       </IconButton>
+            //     </InputAdornment>
+            //   ),
+            // }}
             error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
           />
