@@ -13,6 +13,7 @@ import DashboardApp from './pages/DashboardApp';
 
 import HomePage from './components/Homepage';
 import Lorem from './components/Lorem';
+
 // ----------------------------------------------------------------------
 
 export default function Router() {

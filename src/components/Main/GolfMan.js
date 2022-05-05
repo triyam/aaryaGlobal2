@@ -21,7 +21,7 @@ const GolfMan = () => (
             テキストテキストテキストテキストテキスト
             テキストテキストテキストテキストテキスト
             テキストテキストテキスト。</p>
-            <Link to="/commingsoon">
+            <Link className="left" to="/lorem" state={{ title: "詳しくはこちら" }}>
               <p id="detail_btn">詳しくはこちら <img src={polygon2} alt=""/></p>
             </Link>
         </div>

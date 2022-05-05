@@ -28,7 +28,7 @@ const Header = () => (
                     </Link>
                   </li>
                   <li>
-                    <Link id="has_bottom_border" to="/commingsoon">
+                    <Link id="has_bottom_border" to="/lorem" state={{ title: "ホスト登録" }}>
                       ホスト登録
                     </Link>
                   </li>

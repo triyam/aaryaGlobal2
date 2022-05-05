@@ -7,8 +7,7 @@ import Main from './Main/Main';
 import TabPanel from './Dashboard/Tabpanel';
 import Login from './Login';
 
-const Homepage = () => {
-  return (
+const Homepage = () => (
 <>
 <div>
 
@@ -24,6 +23,5 @@ const Homepage = () => {
 </>
 
     )
-}
 
 export default Homepage
