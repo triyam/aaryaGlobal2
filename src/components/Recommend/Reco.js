@@ -74,15 +74,15 @@ const Reco = () => {
       </div>
 
       <div className="button_list">
-        <Link to="/commingsoon">PR　バナー</Link>
+        <Link className="left" to="/lorem" state={{ title: "PR　バナー" }}>PR　バナー</Link>
         <span />
-        <Link to="/commingsoon">PR　バナー</Link>
+        <Link className="left" to="/lorem" state={{ title: "PR　バナー" }}>PR　バナー</Link>
         <span />
-        <Link to="/commingsoon">PR　バナー</Link>
+        <Link className="left" to="/lorem" state={{ title: "PR　バナー" }}>PR　バナー</Link>
         <span />
-        <Link to="/commingsoon">PR　バナー</Link>
+        <Link className="left" to="/lorem" state={{ title: "PR　バナー" }}>PR　バナー</Link>
         <span />
-        <Link to="/commingsoon">PR　バナー</Link> 
+        <Link className="left" to="/lorem" state={{ title: "PR　バナー" }}>PR　バナー</Link> 
       </div>
     </>
   );
