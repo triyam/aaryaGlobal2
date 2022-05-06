@@ -4,7 +4,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // material
-import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
+import { Stack, TextField, IconButton, InputAdornment, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../dashboardComponents/Iconify';
@@ -30,6 +30,7 @@ export default function RegisterForm() {
       email: '',
       password: '',
       confirmPassword: '',
+      service: '',
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
@@ -42,39 +43,53 @@ export default function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const config = {
-      header: {
-        'Content-Type': 'application/json',
-      },
-    };
-    if (values.password === values.confirmPassword) {
-      axios
-        .post(
-          'https://aryaglobal2.herokuapp.com/register',
-          {
-            username: values.firstName.concat(' ', values.lastName),
-            email: values.email,
-            password: values.password,
-            confirmPassword: values.confirmPassword,
-          },
-          config
-        )
-        .then((response) => {
-          console.log(response);
-          // window.alert("Registration Successful!");
-          console.log('Registration Successful!');
-          navigate('/login');
-        })
-        .catch((error) => {
-          console.log(error);
-          window.alert('Email already exists ');
-          console.log('Email already exists !');
-        });
-      // alert('Signup Success');
-      console.log(values);
-    } else {
-      alert("Password Don't Match");
-      console.log(values);
+    let URL = '';
+    console.log(values);
+    if (values.service === '') alert('Please select a service');
+    else {
+      if (values.service === 'car_rental') {
+        URL = 'https://aryaglobal2.herokuapp.com/car/register';
+        // console.log('URL');
+      }
+      if (values.service === 'golf_rental') URL = 'https://aryaglobal2.herokuapp.com/golf/register';
+      if (values.service === 'hotel_rental') URL = 'https://aryaglobal2.herokuapp.com/hotel/register';
+
+      console.log(URL);
+      const config = {
+        header: {
+          'Content-Type': 'application/json',
+        },
+      };
+      if (values.password === values.confirmPassword) {
+        axios
+          .post(
+            URL,
+            {
+              username: values.firstName.concat(' ', values.lastName),
+              email: values.email,
+              password: values.password,
+              confirmPassword: values.confirmPassword,
+              service: values.service,
+            },
+            config
+          )
+          .then((response) => {
+            console.log(response);
+            // window.alert("Registration Successful!");
+            console.log('Registration Successful!');
+            navigate('/login');
+          })
+          .catch((error) => {
+            console.log(error);
+            window.alert('Registration Failed ');
+            console.log('Registration Failed');
+          });
+        // alert('Signup Success');
+        console.log(values);
+      } else {
+        alert("Password Don't Match");
+        console.log(values);
+      }
     }
   };
 
@@ -146,8 +161,27 @@ export default function RegisterForm() {
             error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
           />
+          <FormControl sx={{ mt: 2, minWidth: 480 }}>
+            <InputLabel id="demo-simple-select-fullwidth-label">Select Service</InputLabel>
+            <Select
+              labelId="demo-simple-select-fullwidth-label"
+              id="demo-simple-select-fullwidth"
+              // value={age}
+              // onChange={handleChange}
+              {...getFieldProps('service')}
+              fullWidth
+              label="Service"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="car_rental">Car Rental</MenuItem>
+              <MenuItem value="golf_rental">Golf Rental</MenuItem>
+              <MenuItem value="hotel_rental">Hotel Rental</MenuItem>
+            </Select>
+          </FormControl>
 
-          <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+          <LoadingButton fullwidth size="large" type="submit" variant="contained" loading={isSubmitting}>
             Register
           </LoadingButton>
         </Stack>

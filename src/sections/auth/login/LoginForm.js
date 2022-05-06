@@ -4,7 +4,19 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
-import { Link, Stack, Checkbox, TextField, IconButton, InputAdornment, FormControlLabel } from '@mui/material';
+import {
+  Link,
+  Stack,
+  Checkbox,
+  TextField,
+  IconButton,
+  InputAdornment,
+  FormControlLabel,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../dashboardComponents/Iconify';
@@ -25,6 +37,7 @@ export default function LoginForm() {
     initialValues: {
       email: '',
       password: '',
+      service: '',
       remember: true,
     },
     validationSchema: LoginSchema,
@@ -43,41 +56,55 @@ export default function LoginForm() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const config = {
-      header: {
-        'Content-Type': 'application/json',
-      },
-    };
-    if (values.email !== '' && values.password !== '') {
-      console.log(values);
-      // console.log(formik.initialValues.email);
-      // console.log(formik.initialValues.password);
-      axios
-        .post(
-          'https://aryaglobal2.herokuapp.com/signin',
-          {
-            email: values.email,
-            password: values.password,
-          },
-          config
-        )
-        .then((response) => {
-          console.log(response.data);
-          // window.alert("Login Successful!");
-          console.log('Login Successful!');
-          localStorage.setItem('jwt', response.data.token);
-          localStorage.setItem('user', JSON.stringify(response.data.user));
-          navigate('/dashboard');
-        })
-        .catch((error) => {
-          console.log(error);
-          window.alert('Invalid Credentials!');
-          console.log('Invalid Credentials!');
-        });
-      // alert('Login Success');
-    } else {
-      alert('Please Enter Valid Details');
-      // console.log(values);
+    let URL = '';
+    console.log(values);
+    if (values.service === '') alert('Please select a service');
+    else {
+      if (values.service === 'car_rental') {
+        URL = 'https://aryaglobal2.herokuapp.com/car/signin';
+        // console.log('URL');
+      }
+      if (values.service === 'golf_rental') URL = 'https://aryaglobal2.herokuapp.com/golf/signin';
+      if (values.service === 'hotel_rental') URL = 'https://aryaglobal2.herokuapp.com/hotel/signin';
+
+      console.log(URL);
+      const config = {
+        header: {
+          'Content-Type': 'application/json',
+        },
+      };
+      if (values.email !== '' && values.password !== '' && values.service !== '') {
+        console.log(values);
+        // console.log(formik.initialValues.email);
+        // console.log(formik.initialValues.password);
+        axios
+          .post(
+            URL,
+            {
+              email: values.email,
+              password: values.password,
+              service: values.service,
+            },
+            config
+          )
+          .then((response) => {
+            console.log(response.data);
+            // window.alert("Login Successful!");
+            console.log('Login Successful!');
+            localStorage.setItem('jwt', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            navigate('/dashboard');
+          })
+          .catch((error) => {
+            console.log(error);
+            window.alert('Invalid Credentials!');
+            console.log('Invalid Credentials!');
+          });
+        // alert('Login Success');
+      } else {
+        alert('Please Enter Valid Details');
+        // console.log(values);
+      }
     }
   };
 
@@ -116,6 +143,25 @@ export default function LoginForm() {
           />
         </Stack>
 
+        <FormControl sx={{ mt: 3, minWidth: 480 }}>
+          <InputLabel id="demo-simple-select-fullwidth-label">Select Service</InputLabel>
+          <Select
+            labelId="demo-simple-select-fullwidth-label"
+            id="demo-simple-select-fullwidth"
+            // value={age}
+            // onChange={handleChange}
+            {...getFieldProps('service')}
+            fullWidth
+            label="Service"
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="car_rental">Car Rental</MenuItem>
+            <MenuItem value="golf_rental">Golf Rental</MenuItem>
+            <MenuItem value="hotel_rental">Hotel Rental</MenuItem>
+          </Select>
+        </FormControl>
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
           <FormControlLabel
             control={<Checkbox {...getFieldProps('remember')} checked={values.remember} />}
