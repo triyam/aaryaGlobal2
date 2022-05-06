@@ -70,10 +70,11 @@ export default function SelectTextFields() {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiTextField-root": { m: 0.5, width: "20%" },
       }}
       noValidate
       autoComplete="off"
+      style={{marginBottom:"5%"}}
     >
       <h2>宿泊検索</h2>
       <div>
