@@ -103,7 +103,6 @@ export default function Login() {
             <AuthSocial />
 
             <LoginForm />
-
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
                 Don’t have an account?{' '}
@@ -116,7 +115,9 @@ export default function Login() {
         </Container>
       </RootStyle>
     {/* </Page> */}
+    <div>
     <Footer/>
+    </div>
     </>
   );
 }
