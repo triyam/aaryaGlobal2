@@ -143,7 +143,7 @@ export default function LoginForm() {
           />
         </Stack>
 
-        <FormControl sx={{ mt: 3, minWidth: 480 }}>
+        <FormControl sx={{ mt: 3, minWidth: "100%" }}>
           <InputLabel id="demo-simple-select-fullwidth-label">Select Service</InputLabel>
           <Select
             labelId="demo-simple-select-fullwidth-label"
