@@ -8,6 +8,8 @@ import User from './pages/User';
 import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
+import UserLogin from './pages/UserLogin';
+import UserRegister from './pages/UserRegister';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 
@@ -20,7 +22,7 @@ export default function Router() {
   return useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />, 
+      element: <DashboardLayout />,
       children: [
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
@@ -30,7 +32,8 @@ export default function Router() {
     },
 
     {
-      path: '/home', element: <HomePage />,
+      path: '/home',
+      element: <HomePage />,
       // children:[
       //   { path: 'app', element: <DashboardApp/> },
       // ],
@@ -45,7 +48,9 @@ export default function Router() {
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },
-        { path: 'lorem', element: <Lorem/>},
+        { path: 'lorem', element: <Lorem /> },
+        { path: 'userLogin', element: <UserLogin /> },
+        { path: 'userRegister', element: <UserRegister /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
