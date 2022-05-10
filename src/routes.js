@@ -16,6 +16,8 @@ import Lorem from './components/Lorem';
 
 import Mapbox from './components/Main/Mapbox';
 
+import GolfUserList from './pages/GolfUserList';
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -28,6 +30,7 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+        { path: 'golfuserlist', element: <GolfUserList /> },
       ],
     },
 
