@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik, Form, FormikProvider } from 'formik';
+// import { Card, Container, Typography } from '@mui/material';
 // material
 import {
+  Typography,
   Link,
   Stack,
   Checkbox,
@@ -18,12 +20,16 @@ import {
   Select,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import useResponsive from '../../../hooks/useResponsive';
+
 // component
 import Iconify from '../../../dashboardComponents/Iconify';
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+  // const smUp = useResponsive('up', 'sm');
+
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -143,7 +149,7 @@ export default function LoginForm() {
           />
         </Stack>
 
-        <FormControl sx={{ mt: 3, minWidth: 480 }}>
+        <FormControl sx={{ mt: 3, minWidth: "100%" }}>
           <InputLabel id="demo-simple-select-fullwidth-label">Select Service</InputLabel>
           <Select
             labelId="demo-simple-select-fullwidth-label"
@@ -171,6 +177,17 @@ export default function LoginForm() {
           <Link component={RouterLink} variant="subtitle2" to="#" underline="hover">
             Forgot password?
           </Link>
+          <Link component={RouterLink} variant="subtitle2" to="/register" underline="hover">
+          Don’t have an account?
+          </Link>
+          {/* {!smUp && (
+              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                Don’t have an account?{' '}
+                <Link variant="subtitle2" component={RouterLink} to="/register">
+                  Get started
+                </Link>
+              </Typography>
+            )} */}
         </Stack>
 
         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>

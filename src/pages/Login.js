@@ -10,7 +10,8 @@ import Logo from '../dashboardComponents/Logo';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import AuthSocial from '../sections/auth/AuthSocial';
-
+import Header from '../components/Header';
+import Footer from '../components/Footer/Footer';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -62,7 +63,12 @@ export default function Login() {
   const mdUp = useResponsive('up', 'md');
 
   return (
-    <Page title="Login">
+    <>
+    <div className='row'>
+    <Header/>
+    </div>
+    {/* <Page title="Login"> */}
+      
       <RootStyle>
         <HeaderStyle>
           <Logo />
@@ -97,7 +103,6 @@ export default function Login() {
             <AuthSocial />
 
             <LoginForm />
-
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
                 Don’t have an account?{' '}
@@ -109,6 +114,10 @@ export default function Login() {
           </ContentStyle>
         </Container>
       </RootStyle>
-    </Page>
+    {/* </Page> */}
+    <div>
+    <Footer/>
+    </div>
+    </>
   );
 }
