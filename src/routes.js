@@ -19,6 +19,12 @@ import Lorem from './components/Lorem';
 import Mapbox from './components/Main/Mapbox';
 
 import GolfUserList from './pages/GolfUserList';
+import EndUserList from './pages/EndUserList';
+import TravelAgentList from './pages/TravelAgentList';
+import SiteSeeingAuthList from './pages/SiteSeeingAuthList';
+import OrderFormReqList from './pages/OrderFormReqList';
+import OrderList from './pages/OrderList';
+import CustOrderFormList from './pages/CustOrderFormList';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +38,14 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+
         { path: 'golfuserlist', element: <GolfUserList /> },
+        { path: 'enduserlist', element: <EndUserList /> },
+        { path: 'travelagentlist', element: <TravelAgentList /> },
+        { path: 'siteseeinglist', element: <SiteSeeingAuthList /> },
+        { path: 'orderformreqlist', element: <OrderFormReqList /> },
+        { path: 'orderlist', element: <OrderList /> },
+        { path: 'custorderformlist', element: <CustOrderFormList /> },
       ],
     },
 
