@@ -11,6 +11,9 @@ import Logo from '../dashboardComponents/Logo';
 import UserRegisterForm from '../sections/auth/register/UserRegitserForm';
 import AuthSocial from '../sections/auth/AuthSocial';
 
+import Header from '../components/Header';
+import Footer from '../components/Footer/Footer';
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -63,25 +66,17 @@ export default function Register() {
 
   return (
     <Page title="Register">
+      <div>
+        <Header/>
+      </div>
       <RootStyle>
-        <HeaderStyle>
-          <Logo />
-          {smUp && (
-            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              Already have an account? {''}
-              <Link variant="subtitle2" component={RouterLink} to="/userLogin">
-                Login
-              </Link>
-            </Typography>
-          )}
-        </HeaderStyle>
 
         {mdUp && (
           <SectionStyle>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Manage the job more effectively with Minimal
+            <Typography variant="h3" sx={{ px: 5, mt: 3, mb: 5 }}>
+              Japan Lets Play Golf with Samurai Golf
             </Typography>
-            <img alt="register" src="/static/illustrations/illustration_register.png" />
+            <img alt="register" style={{padding:"5%"}} src="https://www.aaryaglobalconsulting.com/wp-content/uploads/2016/08/cropped-Logo-Aug16-1.png" />
           </SectionStyle>
         )}
 
@@ -98,7 +93,7 @@ export default function Register() {
             <UserRegisterForm />
 
             <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-              By registering, I agree to Minimal&nbsp;
+              By registering, I agree to Samurai Golf&nbsp;
               <Link underline="always" color="text.primary" href="#">
                 Terms of Service
               </Link>
@@ -108,6 +103,15 @@ export default function Register() {
               </Link>
               .
             </Typography>
+
+            {smUp && (
+            <Typography variant="body2" sx={{ mt: { md: 3, textAlign: 'center' } }}>
+              Already have an account? {''}
+              <Link variant="subtitle2" component={RouterLink} to="/userLogin">
+                Login
+              </Link>
+            </Typography>
+          )}
 
             {!smUp && (
               <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
@@ -120,6 +124,9 @@ export default function Register() {
           </ContentStyle>
         </Container>
       </RootStyle>
+      <div>
+        <Footer/>
+      </div>
     </Page>
   );
 }

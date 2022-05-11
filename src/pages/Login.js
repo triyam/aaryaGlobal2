@@ -71,7 +71,6 @@ export default function Login() {
       
       <RootStyle>
         <HeaderStyle>
-          <Logo />
 
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
@@ -88,14 +87,14 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/static/illustrations/illustration_login.png" alt="login" />
+            <img style={{padding:"5%"}} src="https://www.aaryaglobalconsulting.com/wp-content/uploads/2016/08/cropped-Logo-Aug16-1.png" alt="login" />
           </SectionStyle>
         )}
 
         <Container maxWidth="sm">
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign in to Samurai Golf
             </Typography>
 
             <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
