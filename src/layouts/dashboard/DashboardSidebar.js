@@ -61,7 +61,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <Logo />
+      <img style={{padding:"2%", borderRadius:"7px"}} src="https://www.aaryaglobalconsulting.com/wp-content/uploads/2016/08/cropped-Logo-Aug16-1.png" alt="logo" />
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
