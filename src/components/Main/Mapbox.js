@@ -6,10 +6,41 @@ import jpMap from '../../assets/img/main/jpmap.png'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyeWFnbG9iYWwiLCJhIjoiY2wybXNydW5rMHZ0dDNicWN6OXk0OW9iYSJ9.sLWQvg-i51poM7WO4eOlqw';
 
+
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [142.8235, 43.6203]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Hokaido 1, Japan'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [142.8535, 43.1203]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Hokaido 2, Japan'
+      }
+    }
+  ]
+};
+
+
 export default function Mapbox() {
   const mapContainer = useRef(null);
   const [markerLngLat, setMarkerLngLat] = useState([138.2529, 36.2048]);
   const [mapObject, setMap] = useState();
+
 
 useEffect(() => {
   const map = new mapboxgl.Map({
@@ -20,6 +51,27 @@ useEffect(() => {
   });
 
   setMap(map);
+  // add markers to map
+  // eslint-disable-next-line no-restricted-syntax
+  for (const feature of geojson.features) {
+    // create a HTML element for each feature
+    const el = document.createElement('div');
+    el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+
+
+  new mapboxgl.Marker(el)
+  .setLngLat(feature.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML(
+        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+      )
+  )
+  .addTo(map);
+}
 },[]);
 
 function setMapCenter(coords) {

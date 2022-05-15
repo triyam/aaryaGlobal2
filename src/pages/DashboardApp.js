@@ -38,6 +38,7 @@ export default function DashboardApp() {
   const [text, setText] = React.useState('');
 
   return (
+
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
@@ -116,5 +117,6 @@ export default function DashboardApp() {
         </Grid>
       </Container>
     </Page>
+
   );
 }
