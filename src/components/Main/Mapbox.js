@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-
+import {useNavigate} from "react-router-dom"
 // eslint-disable-next-line import/no-unresolved
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import jpMap from '../../assets/img/main/jpmap.png'
@@ -37,6 +37,7 @@ const geojson = {
 
 
 export default function Mapbox() {
+  const navigate = useNavigate();
   const mapContainer = useRef(null);
   const [markerLngLat, setMarkerLngLat] = useState([138.2529, 36.2048]);
   const [mapObject, setMap] = useState();
@@ -61,16 +62,25 @@ useEffect(() => {
   // make a marker for each feature and add to the map
   new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
 
-
   new mapboxgl.Marker(el)
   .setLngLat(feature.geometry.coordinates)
-  .setPopup(
-    new mapboxgl.Popup({ offset: 25 }) // add popups
-      .setHTML(
-        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
-      )
-  )
+  // .setPopup(
+  //   new mapboxgl.Popup({ offset: 25 }) // add popups
+  //     .setHTML(
+  //       `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+  //       <Link to="/login">Login</Link>
+  //       `
+  //     )
+  // )
   .addTo(map);
+  el.addEventListener('click', () => 
+  { 
+     // eslint-disable-next-line no-alert
+    //  alert("Marker Clicked.");
+    navigate("/login");
+  }
+)
+
 }
 },[]);
 
