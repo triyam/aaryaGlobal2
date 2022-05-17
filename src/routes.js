@@ -28,6 +28,7 @@ import OrderFormReqList from './pages/OrderFormReqList';
 import OrderList from './pages/OrderList';
 import CustOrderFormList from './pages/CustOrderFormList';
 import UserDashboard from './components/Dashboard/DashboardPage';
+import MaterialForm from './components/Main/MaterialForm';
 
 // ----------------------------------------------------------------------
 
@@ -76,7 +77,7 @@ export default function Router() {
         { path: 'userRegister', element: <UserRegister /> },
         { path: '*', element: <Navigate to="/404" /> },
         { path: 'userdashboard', element: <UserDashboard /> },
-
+        { path: 'materialform', element: <MaterialForm /> }
       ],
     },
     { path: '*', element: <Navigate to="/404" replace /> },
