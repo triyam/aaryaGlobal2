@@ -23,7 +23,7 @@ const Topics = () => (
               <p id="topic_cont_item"><span>2021年 4月 10日</span> テキストテキストテキストテキストテキストテキストテキスト</p>              
             </div>
             <div className="col-lg-3 col-md-5 col-sm-12">
-              <Link className="left" to="/lorem" state={{ title: "詳しくはこちら" }}>
+              <Link className="left" to="/blogpage" state={{ title: "詳しくはこちら" }}>
                 <p id="detail_btn">詳しくはこちら <img src={polygon2} alt=""/></p>
               </Link>
             </div> 
@@ -32,7 +32,7 @@ const Topics = () => (
               <p id="topic_cont_item"><span>2021年 4月 10日</span> テキストテキストテキストテキストテキストテキストテキスト</p>              
             </div>
             <div className="col-lg-3 col-md-5 col-sm-12">
-              <Link className="left" to="/lorem" state={{ title: "詳しくはこちら" }}>
+              <Link className="left" to="/blogpage" state={{ title: "詳しくはこちら" }}>
                 <p id="detail_btn">詳しくはこちら <img src={polygon2} alt=""/></p>
               </Link>
             </div> 

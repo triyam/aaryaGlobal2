@@ -43,7 +43,7 @@ export default function UserLoginForm() {
     onSubmit: () => {
       // handleSubmit(e);
       // SubmitHandler(e);
-      navigate('/dashboard', { replace: true });
+      navigate('/userdashboard', { replace: true });
     },
   });
 
@@ -81,7 +81,7 @@ export default function UserLoginForm() {
           console.log('Login Successful!');
           localStorage.setItem('jwt', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
-          navigate('/dashboard');
+          navigate('/userdashboard');
         })
         .catch((error) => {
           console.log(error);

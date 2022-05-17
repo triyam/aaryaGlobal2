@@ -24,6 +24,24 @@ import toppageHeaderText from "../assets/img/main/toppage-header-text.svg";
 // import smallSlider5 from "../assets/img/main/small_slider_5.png";
 // import smallSlider6 from "../assets/img/main/small_slider_6.png";
 
+// const MyCollection = [
+//   {
+//     label: "First Picture",
+//     imgPath:
+// "https://media.geeksforgeeks.org/wp-content/uploads/20210208000010/1.png",
+//   },
+//   {
+//     label: "Second Picture",
+//     imgPath:
+// "https://media.geeksforgeeks.org/wp-content/uploads/20210208000009/2.png",
+//   },
+//   {
+//     label: "Third Picture",
+//     imgPath:
+// "https://media.geeksforgeeks.org/wp-content/uploads/20210208000008/3.png",
+//   },
+// ];
+
 const HeaderSection = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -84,6 +102,31 @@ const HeaderSection = () => {
             <span id="has_color" />
             <span />
           </div>
+          {/* <div className="slideshow-container">
+    <div className="mySlides fade">
+      <div className="numbertext">1 / 3</div>
+      <img src={toppageHeaderText} alt="toppage-header-text" style={{width: '100%'}} />
+      <div className="text">Caption Text</div>
+    </div>
+    <div className="mySlides fade">
+      <div className="numbertext">2 / 3</div>
+      <img src={toppageHeaderText} alt="toppage-header-text" style={{width: '100%'}} />
+      <div className="text">Caption Two</div>
+    </div>
+    <div className="mySlides fade">
+      <div className="numbertext">3 / 3</div>
+      <img src={toppageHeaderText} alt="toppage-header-text" style={{width: '100%'}} />
+      <div className="text">Caption Three</div>
+    </div>
+    <a className="prev" onClick="plusSlides(-1)">❮</a>
+    <a className="next" onClick="plusSlides(1)">❯</a>
+  </div>
+  <br />
+  <div className="dot-container">
+    <span className="dot" onClick="currentSlide(1)" /> 
+    <span className="dot" onClick="currentSlide(2)" /> 
+    <span className="dot" onClick="currentSlide(3)" /> 
+  </div> */}
         </section>
 
         {/* <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">

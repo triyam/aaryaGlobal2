@@ -15,6 +15,8 @@ import DashboardApp from './pages/DashboardApp';
 
 import HomePage from './components/Homepage';
 import Lorem from './components/Lorem';
+import Blogpage from './components/Blogpage';
+import UserDetailsForms from './components/UserDetailsForms';
 
 import Mapbox from './components/Main/Mapbox';
 
@@ -25,6 +27,7 @@ import SiteSeeingAuthList from './pages/SiteSeeingAuthList';
 import OrderFormReqList from './pages/OrderFormReqList';
 import OrderList from './pages/OrderList';
 import CustOrderFormList from './pages/CustOrderFormList';
+import UserDashboard from './components/Dashboard/DashboardPage';
 
 // ----------------------------------------------------------------------
 
@@ -67,9 +70,13 @@ export default function Router() {
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },
         { path: 'lorem', element: <Lorem /> },
+        { path: 'blogpage', element: <Blogpage /> },
+        { path: 'userdetailsforms', element: <UserDetailsForms /> },
         { path: 'userLogin', element: <UserLogin /> },
         { path: 'userRegister', element: <UserRegister /> },
         { path: '*', element: <Navigate to="/404" /> },
+        { path: 'userdashboard', element: <UserDashboard /> },
+
       ],
     },
     { path: '*', element: <Navigate to="/404" replace /> },
