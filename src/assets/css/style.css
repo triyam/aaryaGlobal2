@@ -2920,6 +2920,7 @@ ol, ul {
   background: url('../img/main/small_slider_bg.png') no-repeat;
   background-size: cover;
   padding: 25px 0;
+  overflow: hidden;
 }
 .button_list a {
   background: #B82933;
