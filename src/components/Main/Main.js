@@ -16,7 +16,7 @@ const Main = () => (
 
       <div className="d-flex justify-content-around mt-5 flex-wrap">
         <MaterialForm />
-        <MaterialForm2 />
+        <MaterialForm />
       </div>
       {/* <Carousel/> */}
       <Map />
