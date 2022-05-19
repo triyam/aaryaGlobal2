@@ -73,7 +73,7 @@ export default function FormPropsTextFields() {
       style={{marginBottom:"2%"}}
     >
       <div>
-        <h2>宿泊検索</h2>
+        <h2 style={{margin:"1%"}}>宿泊検索</h2>
 
         <LocalizationProvider dateAdapter={AdapterDateFns}>
      
@@ -85,6 +85,7 @@ export default function FormPropsTextFields() {
          setValue(newValue);
        }}
        renderInput={(params) => <TextField {...params} />}
+       style={{margin:"1%"}}
      />
    
  </LocalizationProvider>
@@ -116,7 +117,7 @@ export default function FormPropsTextFields() {
         />
       </div>
 
-      <div>
+      <div style={{margin:"1%"}}>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -171,7 +172,7 @@ export default function FormPropsTextFields() {
           ))}
         </TextField>
       </div>
-      <div>
+      <div style={{margin:"1%"}}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="全部" />
         <FormControlLabel
           control={<Checkbox defaultChecked />}
@@ -179,7 +180,7 @@ export default function FormPropsTextFields() {
         />
         <FormControlLabel control={<Checkbox defaultChecked />} label="旅館" />
       </div>
-      <div>
+      <div style={{margin:"1%"}}>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -200,7 +201,7 @@ export default function FormPropsTextFields() {
         </TextField>
       </div>
 
-      <div>
+      <div style={{margin:"1%"}}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="禁煙" />
         <FormControlLabel
           control={<Checkbox defaultChecked />}
@@ -220,7 +221,7 @@ export default function FormPropsTextFields() {
         />
       </div>
 
-      <div>
+      <div style={{margin:"1%"}}>
         <Button variant="outlined" color="error" style={{margin:"1%"}}>
           条件をクリア
         </Button>
