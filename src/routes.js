@@ -16,6 +16,8 @@ import DashboardApp from './pages/DashboardApp';
 import HomePage from './components/Homepage';
 import Lorem from './components/Lorem';
 import Blogpage from './components/Blogpage';
+import CreateBlogSelf from './components/CreateBlogSelf';
+import CreateBlogHtml from './components/CreateBlogHtml';
 import UserDetailsForms from './components/UserDetailsForms';
 
 import Mapbox from './components/Main/Mapbox';
@@ -72,6 +74,8 @@ export default function Router() {
         { path: '404', element: <NotFound /> },
         { path: 'lorem', element: <Lorem /> },
         { path: 'blogpage', element: <Blogpage /> },
+        { path: 'createblogself', element: <CreateBlogSelf /> },
+        { path: 'createbloghtml', element: <CreateBlogHtml /> },
         { path: 'userdetailsforms', element: <UserDetailsForms /> },
         { path: 'userLogin', element: <UserLogin /> },
         { path: 'userRegister', element: <UserRegister /> },

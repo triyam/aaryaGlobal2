@@ -19,7 +19,7 @@ const Blogpage = () => {
             <img
               style={{ borderRadius: '20px' }}
               src="https://thumbs.dreamstime.com/b/close-up-golf-ball-tee-iron-let-s-golf-today-109091504.jpg"
-              alt=""
+              alt="/"
             />
           </div>
         </div>
