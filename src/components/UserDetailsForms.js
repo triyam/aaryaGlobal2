@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -117,21 +117,62 @@ export default function SignUp() {
             Enter your details here !!
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <div>
 
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-     
-     <DesktopDatePicker
-       label="For desktop"
-       value={value}
-       minDate={new Date('2017-01-01')}
-       onChange={(newValue) => {
-         setValue(newValue);
+          <Grid container spacing={2} style={{marginBottom:"5%"}}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterDateFns} >
+    
+    <DesktopDatePicker
+    
+      label="For desktop"
+      value={value}
+      minDate={new Date('2017-01-01')}
+      onChange={(newValue) => {
+        setValue(newValue);
        }}
-       renderInput={(params) => <TextField {...params} />}
-     />
-   
- </LocalizationProvider>
+       renderInput={(params) => <TextField {...params} style={{width:"100%"}}/>}
+       
+       />
+  
+</LocalizationProvider>
+
+              </Grid>
+         
+
+          
+          <Grid item xs={12}>
+
 
         <TextField
           id="outlined-select-currency-native"
@@ -143,6 +184,7 @@ export default function SignUp() {
             native: true
           }}
           helperText=""
+          style={{ width:"100%"}}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -158,9 +200,9 @@ export default function SignUp() {
           control={<Checkbox defaultChecked />}
           label="宿泊日未定"
         />
-      </div>
+      </Grid>
 
-      <div>
+      <Grid item xs={12} >
         <TextField
           id="outlined-select-currency-native"
           select
@@ -171,6 +213,7 @@ export default function SignUp() {
             native: true
           }}
           helperText=""
+          style={{width:"100%"}}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -178,6 +221,8 @@ export default function SignUp() {
             </option>
           ))}
         </TextField>
+      </Grid>
+<Grid item xs={12} >
 
         <TextField
           id="outlined-select-currency-native"
@@ -189,6 +234,7 @@ export default function SignUp() {
             native: true
           }}
           helperText="1室ご利用人数"
+          style={{ width:"100%"}}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -196,7 +242,8 @@ export default function SignUp() {
             </option>
           ))}
         </TextField>
-
+</Grid>
+<Grid item xs={12}>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -207,6 +254,7 @@ export default function SignUp() {
             native: true
           }}
           helperText="1室ご利用人数"
+          style={{ width:"100%"}}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -214,16 +262,16 @@ export default function SignUp() {
             </option>
           ))}
         </TextField>
-      </div>
-      <div>
+      </Grid>
+      <Grid item xs={12}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="全部" />
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="ホテル"
         />
         <FormControlLabel control={<Checkbox defaultChecked />} label="旅館" />
-      </div>
-      <div>
+      </Grid>
+      <Grid item xs={12}>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -234,7 +282,8 @@ export default function SignUp() {
             native: true
           }}
           helperText=""
-          style={{ width: "45%" }}
+          
+          style={{ width: "100%" }}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -242,9 +291,9 @@ export default function SignUp() {
             </option>
           ))}
         </TextField>
-      </div>
+      </Grid>
 
-      <div>
+      <Grid item xs={12}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="禁煙" />
         <FormControlLabel
           control={<Checkbox defaultChecked />}
@@ -262,16 +311,18 @@ export default function SignUp() {
           control={<Checkbox defaultChecked />}
           label="朝食付"
         />
-      </div>
+      </Grid>
 
-      <div>
+      <Grid item xs={12}>
         <Button variant="outlined" color="error" style={{margin:"1%"}}>
           条件をクリア
         </Button>
         <Button variant="contained" color="success" style={{margin:"1%"}}>
           この条件で検索
         </Button>
-      </div>
+      </Grid>
+      <Grid/>
+          </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
