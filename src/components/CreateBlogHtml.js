@@ -1,65 +1,45 @@
-import React, { useCallback, useMemo } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React from 'react';
+import { styled } from '@mui/material/styles';
+import { Button, Container, Typography, Box } from '@mui/material';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-const baseStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  transition: 'border .3s ease-in-out'
-};
+const Input = styled('input')({
+  display: 'none',
+});
 
-const activeStyle = {
-  borderColor: '#2196f3'
-};
-
-const acceptStyle = {
-  borderColor: '#00e676'
-};
-
-const rejectStyle = {
-  borderColor: '#ff1744'
-};
-
-function DropzoneComponent(props) {
-  const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles);
-  }, []);
-
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject
-  } = useDropzone({
-    onDrop,
-    accept: 'image/jpeg, image/png'
-  });
-
-  const style = useMemo(() => ({
-    ...baseStyle,
-    ...(isDragActive ? activeStyle : {}),
-    ...(isDragAccept ? acceptStyle : {}),
-    ...(isDragReject ? rejectStyle : {})
-  }), [
-    isDragActive,
-    isDragReject,
-    isDragAccept
-  ]);
-
+function CreateBlogHtml() {
   return (
-    <div {...getRootProps({style})}>
-      <input {...getInputProps()} />
-      <div>Drag and drop your images here.</div>
-    </div>
-  )
+    <Container sx={{ mt: 20 }}>
+      <Typography variant="h2" sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
+        Add your Blog post
+      </Typography>
+      <Box
+        sx={{
+          width: 400,
+          height: 150,
+          border: 3,
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          mx: 'auto',
+          borderRadius: 1,
+        }}
+      >
+        <Typography variant="h3" sx={{ display: 'flex', justifyContent: 'center' }}>
+          Upload HTML file
+        </Typography>
+        <Box sx={{ mt: 2, mx: 'auto' }}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="contained-button-file">
+            <Input accept=".html" id="contained-button-file" multiple type="file" />
+            <Button variant="outlined" component="span">
+              <FileUploadIcon color="primary" style={{ fontSize: 50 }} />
+            </Button>
+          </label>
+        </Box>
+      </Box>
+    </Container>
+  );
 }
 
-export default DropzoneComponent;
+export default CreateBlogHtml;

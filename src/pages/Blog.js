@@ -72,20 +72,20 @@ export default function Blog() {
                     </button> */}
 
                     <div>
-                      <RouterLink to="/createbloghtml" state={{ title: "Drag n Drop HTML Page" }}>
-                        <p id="detail_btn">Drag n Drop HTML Page</p>
+                      <RouterLink to="/createbloghtml" state={{ title: 'Drag n Drop HTML Page' }}>
+                        <p id="detail_btn">Upload your HTML Page</p>
                       </RouterLink>
-                    </div> 
-                    
+                    </div>
+
                     {/* <button type="button" className="btn btn-primary btn-lg btn-block">
                       Write it by Yourself
                     </button> */}
 
                     <div>
-                      <RouterLink to="/createblogself" state={{ title: "Write it by Yourself" }}>
+                      <RouterLink to="/createblogself" state={{ title: 'Write it by Yourself' }}>
                         <p id="detail_btn">Write it by Yourself</p>
                       </RouterLink>
-                    </div> 
+                    </div>
                   </div>
                 </Stack>
               </Typography>
