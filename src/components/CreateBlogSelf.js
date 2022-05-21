@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
@@ -8,6 +8,11 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import TextField from '@mui/material/TextField';
 
 const CreateBlogSelf = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+  };
+
   const ImageInput = () => (
     <Box sx={{ width: 200, height: 200, border: 1, borderColor: 'grey.500', borderRadius: 1 }}>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -19,6 +24,7 @@ const CreateBlogSelf = () => {
           onChange={(e) => {
             uploadImage(e.target.files[0]);
           }}
+          onSubmit={handleSubmit}
         />
 
         <IconButton
@@ -27,7 +33,7 @@ const CreateBlogSelf = () => {
           aria-label="upload picture"
           component="span"
         >
-          <AddPhotoAlternateIcon color="action" style={{ fontSize: 60 }} />
+          <AddPhotoAlternateIcon color="action" style={{ fontSize: 80 }} />
         </IconButton>
       </label>
     </Box>
@@ -56,50 +62,57 @@ const CreateBlogSelf = () => {
   });
 
   return (
-    <Box sx={{ ml: '3%', mt: '3%' }}>
-      <Typography variant="h2">Write your own blog</Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <Box
-          sx={{
-            position: 'relative',
-            width: 200,
-            height: 200,
-            mt: 3,
-          }}
-        >
-          {imageFile.file != null ? (
-            <Box>
-              <img
-                style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 6 }}
-                src={imageFile.url}
-                alt="blogimage"
+    <div className="text-center">
+      <Box sx={{ ml: '3%', mt: '3%' }}>
+        <Typography variant="h2">Write your own Blog</Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+          <Box
+            sx={{
+              position: 'relative',
+              width: 200,
+              height: 200,
+              mt: 3,
+            }}
+          >
+            {imageFile.file != null ? (
+              <Box>
+                <img
+                  style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 6 }}
+                  src={imageFile.url}
+                  alt="blogimage"
+                />
+              </Box>
+            ) : (
+              <ImageInput />
+            )}
+          </Box>
+          <Layout sx={{}}>
+            <Box sx={{ mb: 3, width: '100%' }}>
+              <TextField
+                id="standard-basic"
+                sx={{ width: '80%' }}
+                inputProps={{ style: { fontSize: 40 } }}
+                InputLabelProps={{ style: { fontSize: 40 } }}
+                label="Blog Title"
+                variant="standard"
               />
             </Box>
-          ) : (
-            <ImageInput />
-          )}
+            <Box sx={{ width: '100%' }}>
+              <TextareaAutosize
+                minRows={6}
+                placeholder="Start writing"
+                style={{ width: '90%', padding: '5px', fontSize: 25 }}
+              />
+            </Box>
+          </Layout>
         </Box>
-        <Layout sx={{}}>
-          <Box sx={{ mb: 3, width: '100%' }}>
-            <TextField
-              id="standard-basic"
-              sx={{ width: '80%' }}
-              inputProps={{ style: { fontSize: 40 } }}
-              InputLabelProps={{ style: { fontSize: 40 } }}
-              label="Title"
-              variant="standard"
-            />
-          </Box>
-          <Box sx={{ width: '100%' }}>
-            <TextareaAutosize
-              minRows={6}
-              placeholder="Start writing"
-              style={{ width: '90%', padding: '5px', fontSize: 25 }}
-            />
-          </Box>
-        </Layout>
       </Box>
-    </Box>
+      <div className="text-center">
+        <Button type="submit" variant="contained" sx={{ mt: 5, mb: 2, width: '50%' }}>
+          Post Blog
+        </Button>
+      </div>
+    </div>
   );
 };
 

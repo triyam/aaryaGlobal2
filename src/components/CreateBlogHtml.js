@@ -9,20 +9,19 @@ const Input = styled('input')({
 });
 
 function CreateBlogHtml() {
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
   };
 
   return (
-    <Container sx={{ mt: 20 }}>
+    <Container sx={{ mt: 10 }}>
       <Typography variant="h2" sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
         Add your Blog post
       </Typography>
       <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
         <TextField
-          label="Title"
+          label="Blog Title"
           id="filled-size-normal"
           variant="filled"
           sx={{ width: 500 }}
@@ -40,7 +39,6 @@ function CreateBlogHtml() {
           flexDirection: 'column',
           mx: 'auto',
           borderRadius: 1,
-          
         }}
         onSubmit={handleSubmit}
       >
@@ -57,19 +55,12 @@ function CreateBlogHtml() {
             </Button>
           </label>
         </Box>
-        
       </Box>
       <div className="text-center">
-
-      <Button
-              type="submit"
-              
-              variant="contained"
-              sx={{ mt: 5, mb: 2, width:'50%' }}
-              >
-              Post Blog
-            </Button>
-              </div>
+        <Button type="submit" variant="contained" sx={{ mt: 5, mb: 2, width: '50%' }}>
+          Post Blog
+        </Button>
+      </div>
     </Container>
   );
 }
