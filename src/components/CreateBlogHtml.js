@@ -8,6 +8,12 @@ const Input = styled('input')({
 });
 
 function CreateBlogHtml() {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+  };
+
   return (
     <Container sx={{ mt: 20 }}>
       <Typography variant="h2" sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
@@ -15,7 +21,7 @@ function CreateBlogHtml() {
       </Typography>
       <Box
         sx={{
-          width: 400,
+          width: '75%',
           height: 150,
           border: 3,
           display: 'flex',
@@ -23,7 +29,9 @@ function CreateBlogHtml() {
           flexDirection: 'column',
           mx: 'auto',
           borderRadius: 1,
+          
         }}
+        onSubmit={handleSubmit}
       >
         <Typography variant="h3" sx={{ display: 'flex', justifyContent: 'center' }}>
           Upload HTML file
@@ -37,7 +45,19 @@ function CreateBlogHtml() {
             </Button>
           </label>
         </Box>
+        
       </Box>
+      <div className="text-center">
+
+      <Button
+              type="submit"
+              
+              variant="contained"
+              sx={{ mt: 5, mb: 2, width:'50%' }}
+              >
+              Post Blog
+            </Button>
+              </div>
     </Container>
   );
 }
