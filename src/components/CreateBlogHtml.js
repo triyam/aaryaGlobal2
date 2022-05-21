@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Button, Container, Typography, Box } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import TextField from '@mui/material/TextField';
 
 const Input = styled('input')({
   display: 'none',
@@ -19,6 +20,16 @@ function CreateBlogHtml() {
       <Typography variant="h2" sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
         Add your Blog post
       </Typography>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          label="Title"
+          id="filled-size-normal"
+          variant="filled"
+          sx={{ width: 500 }}
+          inputProps={{ style: { fontSize: 20 } }}
+          InputLabelProps={{ style: { fontSize: 20 } }}
+        />
+      </Box>
       <Box
         sx={{
           width: '75%',
@@ -36,6 +47,7 @@ function CreateBlogHtml() {
         <Typography variant="h3" sx={{ display: 'flex', justifyContent: 'center' }}>
           Upload HTML file
         </Typography>
+
         <Box sx={{ mt: 2, mx: 'auto' }}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="contained-button-file">
