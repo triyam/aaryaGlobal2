@@ -72,6 +72,7 @@ export default function FormPropsTextFields() {
       autoComplete="off"
       style={{marginBottom:"2%"}}
     >
+      <div className="text-center">
       <div>
         <h2 style={{margin:"1%"}}>宿泊検索</h2>
 
@@ -107,7 +108,10 @@ export default function FormPropsTextFields() {
             </option>
           ))}
         </TextField>
-        <FormControlLabel
+        
+      </div>
+      <div style={{margin:"1%"}}>
+      <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="日帰り"
         />
@@ -228,6 +232,7 @@ export default function FormPropsTextFields() {
         <Button variant="contained" color="success" style={{margin:"1%"}}>
           この条件で検索
         </Button>
+      </div>
       </div>
     </Box>
   );
