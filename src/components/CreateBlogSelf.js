@@ -6,13 +6,54 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import TextField from '@mui/material/TextField';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
+import { makeStyles } from '@mui/styles';
 
+const useStyles = makeStyles({
+  layout: {
+    '@media(min-width: 727px)': {
+      marginLeft: '30px',
+      width: '80%',
+    },
+  },
+});
 const CreateBlogSelf = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-  };
-
+  const classes = useStyles();
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      description: '',
+      file: '',
+    },
+    validationSchema: Yup.object().shape({
+      title: Yup.string().required('Title is Required'),
+      description: Yup.string().required('Description is required'),
+    }),
+    onSubmit: async () => {
+      try {
+        await axios.post(
+          'https://aryaglobal2.herokuapp.com/blogpost',
+          {
+            type: 'self',
+            title: values.title,
+            description: values.description,
+            file: imageFile.file,
+          },
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+          }
+        );
+        console.log('Successfully posted the blog');
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  });
   const ImageInput = () => (
     <Box sx={{ width: 200, height: 200, border: 1, borderColor: 'grey.500', borderRadius: 1 }}>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -24,7 +65,6 @@ const CreateBlogSelf = () => {
           onChange={(e) => {
             uploadImage(e.target.files[0]);
           }}
-          onSubmit={handleSubmit}
         />
 
         <IconButton
@@ -50,16 +90,19 @@ const CreateBlogSelf = () => {
       file: File,
     });
   };
+
+  const { errors, touched, values, getFieldProps } = formik;
+
   const ImageUpload = styled('input')({
     display: 'none',
   });
 
-  const Layout = styled('div')({
-    '@media(min-width: 727px)': {
-      marginLeft: '30px',
-      width: '80%',
-    },
-  });
+  // const Layout = styled('div')({
+  //   '@media(min-width: 727px)': {
+  //     marginLeft: '30px',
+  //     width: '80%',
+  //   },
+  // });
 
   return (
     <div className="text-center">
@@ -86,7 +129,7 @@ const CreateBlogSelf = () => {
               <ImageInput />
             )}
           </Box>
-          <Layout sx={{}}>
+          <Box className={classes.layout}>
             <Box sx={{ mb: 3, width: '100%' }}>
               <TextField
                 id="standard-basic"
@@ -95,6 +138,9 @@ const CreateBlogSelf = () => {
                 InputLabelProps={{ style: { fontSize: 40 } }}
                 label="Blog Title"
                 variant="standard"
+                type="text"
+                {...formik.getFieldProps('title')}
+                helperText={touched.title && errors.title}
               />
             </Box>
             <Box sx={{ width: '100%' }}>
@@ -102,13 +148,20 @@ const CreateBlogSelf = () => {
                 minRows={6}
                 placeholder="Start writing"
                 style={{ width: '90%', padding: '5px', fontSize: 25 }}
+                {...formik.getFieldProps('description')}
+                helperText={touched.description && errors.description}
               />
             </Box>
-          </Layout>
+          </Box>
         </Box>
       </Box>
       <div className="text-center">
-        <Button type="submit" variant="contained" sx={{ mt: 5, mb: 2, width: '50%' }}>
+        <Button
+          type="submit"
+          variant="contained"
+          onClick={() => formik.handleSubmit()}
+          sx={{ mt: 5, mb: 2, width: '50%' }}
+        >
           Post Blog
         </Button>
       </div>
