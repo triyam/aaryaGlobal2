@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes, useParams } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -10,6 +10,9 @@ import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import UserLogin from './pages/UserLogin';
 import UserRegister from './pages/UserRegister';
+import ForgotPassword from './pages/Forgotpassword';
+import UserForgotPassword from './pages/UserForgotpassword';
+import ResetPassword from './pages/ResetPassword';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 
@@ -56,6 +59,13 @@ export default function Router() {
         { path: 'lorem', element: <Lorem /> },
         { path: 'userLogin', element: <UserLogin /> },
         { path: 'userRegister', element: <UserRegister /> },
+        { path: 'forgotpassword', element: <ForgotPassword /> },
+        { path: 'userforgotpassword', element: <UserForgotPassword /> },
+        {
+          path: '/:serviceId/resetpassword/:resetToken',
+          element: <ResetPassword />,
+        },
+
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
