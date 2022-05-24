@@ -23,9 +23,11 @@ function CreateBlogHtml() {
       file: Yup.mixed().required('File is required'),
     }),
     onSubmit: async () => {
+      console.log(formik.values.title, htmlFile);
       try {
         await axios.post(
           'https://aryaglobal2.herokuapp.com/blogpost',
+          // 'http://localhost:5000/blogpost',
           {
             type: 'html',
             title: formik.values.title,

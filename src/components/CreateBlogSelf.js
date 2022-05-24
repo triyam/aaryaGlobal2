@@ -32,9 +32,13 @@ const CreateBlogSelf = () => {
       description: Yup.string().required('Description is required'),
     }),
     onSubmit: async () => {
+      // console.log(values.title, imageFile.file, values.description);
+      const token = localStorage.getItem('jwt');
+      // console.log(token);
       try {
         await axios.post(
           'https://aryaglobal2.herokuapp.com/blogpost',
+          // 'http://localhost:5000/blogpost',
           {
             type: 'self',
             title: values.title,
@@ -44,7 +48,7 @@ const CreateBlogSelf = () => {
           {
             headers: {
               'Content-Type': 'multipart/form-data',
-              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

@@ -23,6 +23,20 @@ import Mapbox from './components/Main/Mapbox';
 
 import GolfUserList from './pages/GolfUserList';
 
+import Blogpage from './components/Blogpage';
+import CreateBlogSelf from './components/CreateBlogSelf';
+import CreateBlogHtml from './components/CreateBlogHtml';
+import UserDetailsForms from './components/UserDetailsForms';
+
+import EndUserList from './pages/EndUserList';
+import TravelAgentList from './pages/TravelAgentList';
+import SiteSeeingAuthList from './pages/SiteSeeingAuthList';
+import OrderFormReqList from './pages/OrderFormReqList';
+import OrderList from './pages/OrderList';
+import CustOrderFormList from './pages/CustOrderFormList';
+import UserDashboard from './components/Dashboard/DashboardPage';
+import MaterialForm from './components/Main/MaterialForm';
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -36,6 +50,12 @@ export default function Router() {
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
         { path: 'golfuserlist', element: <GolfUserList /> },
+        { path: 'enduserlist', element: <EndUserList /> },
+        { path: 'travelagentlist', element: <TravelAgentList /> },
+        { path: 'siteseeinglist', element: <SiteSeeingAuthList /> },
+        { path: 'orderformreqlist', element: <OrderFormReqList /> },
+        { path: 'orderlist', element: <OrderList /> },
+        { path: 'custorderformlist', element: <CustOrderFormList /> },
       ],
     },
 
@@ -65,6 +85,12 @@ export default function Router() {
           path: '/:serviceId/resetpassword/:resetToken',
           element: <ResetPassword />,
         },
+        { path: 'blogpage', element: <Blogpage /> },
+        { path: 'createblogself', element: <CreateBlogSelf /> },
+        { path: 'createbloghtml', element: <CreateBlogHtml /> },
+        { path: 'userdetailsforms', element: <UserDetailsForms /> },
+        { path: 'userdashboard', element: <UserDashboard /> },
+        { path: 'materialform', element: <MaterialForm /> },
 
         { path: '*', element: <Navigate to="/404" /> },
       ],
