@@ -1,127 +1,125 @@
-import React, { useState } from "react";
+import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 const currencies = [
   {
     value: "1",
-    label: "1"
+    label: "1",
   },
   {
     value: "2",
-    label: "2"
+    label: "2",
   },
   {
     value: "3",
-    label: "3"
+    label: "3",
   },
   {
     value: "4",
-    label: "4"
+    label: "4",
   },
   {
     value: "5",
-    label: "5"
+    label: "5",
   },
   {
     value: "6",
-    label: "6"
+    label: "6",
   },
   {
     value: "7",
-    label: "7"
+    label: "7",
   },
   {
     value: "8",
-    label: "8"
+    label: "8",
   },
   {
     value: "9",
-    label: "9"
+    label: "9",
   },
   {
     value: "10",
-    label: "10"
-  }
+    label: "10",
+  },
 ];
 
-export default function FormPropsTextFields() {
-
-  const [value, setValue] = React.useState(new Date());
-  
+export default function SelectTextFields() {
   const [currency, setCurrency] = React.useState("EUR");
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
+  };
+  const [value, setValue] = React.useState(new Date("2014-08-18T21:11:54"));
+
+  const handleDate = (newValue) => {
+    setValue(newValue);
   };
 
   return (
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" }
+        "& .MuiTextField-root": { m: 0.5, width: "20%" },
       }}
       noValidate
       autoComplete="off"
-      style={{marginBottom:"2%"}}
+      style={{marginBottom:"5%"}}
     >
-      <div className="text-center">
+      <h2>宿泊検索</h2>
       <div>
-        <h2 style={{margin:"1%"}}>宿泊検索</h2>
-
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-     
-     <DesktopDatePicker
-       label="For desktop"
-       value={value}
-       minDate={new Date('2017-01-01')}
-       onChange={(newValue) => {
-         setValue(newValue);
-       }}
-       renderInput={(params) => <TextField {...params} />}
-       style={{margin:"1%"}}
-     />
-   
- </LocalizationProvider>
-
-        <TextField
-          id="outlined-select-currency-native"
-          select
-          label="泊"
-          value={currency}
-          onChange={handleChange}
-          SelectProps={{
-            native: true
-          }}
-          helperText=""
-        >
-          {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-        
+        <Stack direction="row" spacing={2}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DesktopDatePicker
+              label="日にち"
+              inputFormat="MM/dd/yyyy"
+              value={value}
+              onChange={handleDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <TextField
+            id="outlined-select-currency-native"
+            select
+            label="泊"
+            value={currency}
+            onChange={handleChange}
+            SelectProps={{
+              native: true,
+            }}
+            helperText=""
+          >
+            {currencies.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </TextField>
+          <FormGroup>
+            <Stack direction="row" spacing={2}>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="日帰り"
+              />
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="宿泊日未定"
+              />
+            </Stack>
+          </FormGroup>
+        </Stack>
       </div>
-      <div style={{margin:"1%"}}>
-      <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="日帰り"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="宿泊日未定"
-        />
-      </div>
-
-      <div style={{margin:"1%"}}>
+      <div>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -129,7 +127,7 @@ export default function FormPropsTextFields() {
           value={currency}
           onChange={handleChange}
           SelectProps={{
-            native: true
+            native: true,
           }}
           helperText=""
         >
@@ -147,7 +145,7 @@ export default function FormPropsTextFields() {
           value={currency}
           onChange={handleChange}
           SelectProps={{
-            native: true
+            native: true,
           }}
           helperText="1室ご利用人数"
         >
@@ -165,7 +163,7 @@ export default function FormPropsTextFields() {
           value={currency}
           onChange={handleChange}
           SelectProps={{
-            native: true
+            native: true,
           }}
           helperText="1室ご利用人数"
         >
@@ -176,15 +174,25 @@ export default function FormPropsTextFields() {
           ))}
         </TextField>
       </div>
-      <div style={{margin:"1%"}}>
-        <FormControlLabel control={<Checkbox defaultChecked />} label="全部" />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="ホテル"
-        />
-        <FormControlLabel control={<Checkbox defaultChecked />} label="旅館" />
+      <div>
+        <FormGroup>
+          <Stack direction="row" spacing={2}>
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="全部"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="ホテル"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="旅館"
+            />
+          </Stack>
+        </FormGroup>
       </div>
-      <div style={{margin:"1%"}}>
+      <div>
         <TextField
           id="outlined-select-currency-native"
           select
@@ -192,7 +200,7 @@ export default function FormPropsTextFields() {
           value={currency}
           onChange={handleChange}
           SelectProps={{
-            native: true
+            native: true,
           }}
           helperText=""
           style={{ width: "45%" }}
@@ -204,35 +212,41 @@ export default function FormPropsTextFields() {
           ))}
         </TextField>
       </div>
-
-      <div style={{margin:"1%"}}>
-        <FormControlLabel control={<Checkbox defaultChecked />} label="禁煙" />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="露天風呂付客室"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="クラブフロア"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="スイート"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="朝食付"
-        />
+      <div>
+        <FormGroup>
+          <Stack direction="row" spacing={2}>
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="禁煙"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="露天風呂付客室"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="クラブフロア"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="スイート"
+            />
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="朝食付"
+            />
+          </Stack>
+        </FormGroup>
       </div>
-
-      <div style={{margin:"1%"}}>
-        <Button variant="outlined" color="error" style={{margin:"1%"}}>
-          条件をクリア
-        </Button>
-        <Button variant="contained" color="success" style={{margin:"1%"}}>
-          この条件で検索
-        </Button>
-      </div>
+      <div>
+        <Stack direction="row" spacing={2}>
+          <Button variant="outlined" color="error">
+            条件をクリア
+          </Button>
+          <Button variant="contained" color="success">
+            この条件で検索
+          </Button>
+        </Stack>
       </div>
     </Box>
   );

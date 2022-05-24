@@ -22,38 +22,6 @@ const navConfig = [
     icon: getIcon('cil:golf-alt'),
   },
   {
-    title: 'end user list',
-    path: '/dashboard/enduserlist',
-    icon: getIcon('bxs:user-pin'),
-  },
-  {
-    title: 'travel agent list',
-    path: '/dashboard/travelagentlist',
-    icon: getIcon('zondicons:travel'),
-  },
-  {
-    title: 'site seeing authority list',
-    path: '/dashboard/siteseeinglist',
-    icon: getIcon('fa:sitemap'),
-  },
-  {
-    title: 'order form request list',
-    path: '/dashboard/orderformreqlist',
-    icon: getIcon('charm:git-request'),
-  },
-  {
-    title: 'order list',
-    path: '/dashboard/orderlist',
-    icon: getIcon('icon-park-solid:transaction-order'),
-  },
-  {
-    title: 'customer order form list',
-    path: '/dashboard/custorderformlist',
-    icon: getIcon('carbon:order-details'),
-  },
-
-
-  {
     title: 'product',
     path: '/dashboard/products',
     icon: getIcon('eva:shopping-bag-fill'),

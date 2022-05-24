@@ -10,8 +10,6 @@ import Logo from '../dashboardComponents/Logo';
 // sections
 import UserLoginForm from '../sections/auth/login/UserLoginForm';
 import AuthSocial from '../sections/auth/AuthSocial';
-import Header from '../components/Header';
-import Footer from '../components/Footer/Footer';
 
 // ----------------------------------------------------------------------
 
@@ -65,14 +63,18 @@ export default function Login() {
 
   return (
     <Page title="Login">
-      <div className='row'>
-        <Header/>
-      </div>
       <RootStyle>
         <HeaderStyle>
-          {/* <Logo /> */}
+          <Logo />
 
-          
+          {smUp && (
+            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
+              Don’t have an account? {''}
+              <Link variant="subtitle2" component={RouterLink} to="/userRegister">
+                Get started
+              </Link>
+            </Typography>
+          )}
         </HeaderStyle>
 
         {mdUp && (
@@ -80,14 +82,14 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img style={{padding:"5%"}} src="https://www.aaryaglobalconsulting.com/wp-content/uploads/2016/08/cropped-Logo-Aug16-1.png" alt="login" />
+            <img src="/static/illustrations/illustration_login.png" alt="login" />
           </SectionStyle>
         )}
 
         <Container maxWidth="sm">
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              Sign in to Samurai Golf
+              Sign in to Minimal
             </Typography>
 
             <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
@@ -95,15 +97,6 @@ export default function Login() {
             <AuthSocial />
 
             <UserLoginForm />
-
-            {smUp && (
-            <Typography variant="body2" align="center" sx={{ mt: { md: 3 } }}>
-              Don’t have an account? {''}
-              <Link variant="subtitle2" component={RouterLink} to="/userRegister">
-                Get started
-              </Link>
-            </Typography>
-          )}
 
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
@@ -116,9 +109,6 @@ export default function Login() {
           </ContentStyle>
         </Container>
       </RootStyle>
-      <div>
-        <Footer/>
-      </div>
     </Page>
   );
 }
