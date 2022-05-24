@@ -20,10 +20,13 @@ function CreateBlogHtml() {
     },
     validationSchema: Yup.object().shape({
       title: Yup.string().required('Title is Required'),
-      file: Yup.mixed().required('File is required'),
+      //  file: Yup.mixed().required('File is required'),
     }),
     onSubmit: async () => {
-      console.log(formik.values.title, htmlFile);
+      if (htmlFile === null) {
+        alert('HTML file is required');
+        return;
+      }
       try {
         await axios.post(
           'https://aryaglobal2.herokuapp.com/blogpost',
@@ -46,11 +49,6 @@ function CreateBlogHtml() {
       }
     },
   });
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  // };
 
   return (
     <Container sx={{ mt: 10 }}>
@@ -89,14 +87,16 @@ function CreateBlogHtml() {
         <Box sx={{ mt: 2, mx: 'auto' }}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="contained-button-file">
-            <Input accept=".html" id="contained-button-file" multiple type="file" />
-            <Button
-              variant="outlined"
-              component="span"
-              onClick={(e) => {
+            <Input
+              accept=".html"
+              id="contained-button-file"
+              onChange={(e) => {
                 sethtmlFile(e.target.files[0]);
               }}
-            >
+              multiple
+              type="file"
+            />
+            <Button variant="outlined" component="span">
               <FileUploadIcon color="primary" style={{ fontSize: 50 }} />
             </Button>
           </label>
@@ -107,7 +107,9 @@ function CreateBlogHtml() {
           type="submit"
           variant="contained"
           sx={{ mt: 5, mb: 2, width: '50%' }}
-          onClick={() => formik.handleSubmit()}
+          onClick={() => {
+            formik.handleSubmit();
+          }}
         >
           Post Blog
         </Button>
