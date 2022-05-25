@@ -36,6 +36,7 @@ import OrderList from './pages/OrderList';
 import CustOrderFormList from './pages/CustOrderFormList';
 import UserDashboard from './components/Dashboard/DashboardPage';
 import MaterialForm from './components/Main/MaterialForm';
+import EmailVerify from './pages/EmailVerify';
 
 // ----------------------------------------------------------------------
 
@@ -84,6 +85,10 @@ export default function Router() {
         {
           path: '/:serviceId/resetpassword/:resetToken',
           element: <ResetPassword />,
+        },
+        {
+          path: '/:serviceId/:userId/verify/:token',
+          element: <EmailVerify />,
         },
         { path: 'blogpage', element: <Blogpage /> },
         { path: 'createblogself', element: <CreateBlogSelf /> },
