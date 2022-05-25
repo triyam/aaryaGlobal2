@@ -8,8 +8,8 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { makeStyles } from '@mui/styles';
+import { Axios } from '../utils/Axios';
 
 const useStyles = makeStyles({
   layout: {
@@ -36,8 +36,8 @@ const CreateBlogSelf = () => {
       const token = localStorage.getItem('jwt');
       // console.log(token);
       try {
-        await axios.post(
-          'https://aryaglobal2.herokuapp.com/blogpost',
+        await Axios.post(
+          '/blogpost',
           // 'http://localhost:5000/blogpost',
           {
             type: 'self',
@@ -48,7 +48,7 @@ const CreateBlogSelf = () => {
           {
             headers: {
               'Content-Type': 'multipart/form-data',
-              Authorization: `Bearer ${token}`,
+              // Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -139,7 +139,7 @@ const CreateBlogSelf = () => {
                 id="standard-basic"
                 sx={{ width: '80%' }}
                 inputProps={{ style: { fontSize: 40 } }}
-                InputLabelProps={{ style: { fontSize: 40 } }}
+                InputLabelProps={{ style: { fontSize: 34 } }}
                 label="Blog Title"
                 variant="standard"
                 type="text"

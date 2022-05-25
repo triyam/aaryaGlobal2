@@ -5,7 +5,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import { Axios } from '../utils/Axios';
 
 const Input = styled('input')({
   display: 'none',
@@ -28,9 +28,8 @@ function CreateBlogHtml() {
         return;
       }
       try {
-        await axios.post(
-          'https://aryaglobal2.herokuapp.com/blogpost',
-          // 'http://localhost:5000/blogpost',
+        await Axios.post(
+          '/blogpost',
           {
             type: 'html',
             title: formik.values.title,
@@ -39,7 +38,6 @@ function CreateBlogHtml() {
           {
             headers: {
               'Content-Type': 'multipart/form-data',
-              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },
           }
         );
