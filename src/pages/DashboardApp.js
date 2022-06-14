@@ -1,44 +1,29 @@
-import React from 'react';
+import { faker } from '@faker-js/faker';
 // @mui
+import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
 // components
 import Page from '../dashboardComponents/Page';
-
+import Iconify from '../dashboardComponents/Iconify';
 // sections
 import {
-
+  AppTasks,
+  AppNewsUpdate,
+  AppOrderTimeline,
+  AppCurrentVisits,
+  AppWebsiteVisits,
+  AppTrafficBySite,
   AppWidgetSummary,
-
+  AppCurrentSubject,
+  AppConversionRates,
 } from '../sections/@dashboard/app';
-
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 // ----------------------------------------------------------------------
 
-
 export default function DashboardApp() {
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-
-  const handleClose = () => setOpen(false);
-  const [text, setText] = React.useState('');
+  const theme = useTheme();
 
   return (
-
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
@@ -47,76 +32,126 @@ export default function DashboardApp() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} onClick={()=>{setText("End Users Registered"); handleOpen()}} title="End Users Registered" color="info" total={714000} icon={'fa-solid:users'} />
+            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} onClick={()=>{setText("Golf Owner Registered"); handleOpen()}} title="Golf Owner Registered" total={1352831} color="info" icon={'maki:golf'} />
+            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} onClick={()=>{setText("Travel Owner Registered"); handleOpen()}} title="Travel Owner Registered" total={1723315} color="info" icon={'healthicons:travel-alt'} />
+            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Sight Seeing Authority Registered" total={234} color="info" icon={'carbon:building-insights-3'} />
+            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Active Golf Booking" color="info" total={714000} icon={'fa6-solid:golf-ball-tee'} />
+          <Grid item xs={12} md={6} lg={8}>
+            <AppConversionRates
+              title="Conversion Rates"
+              subheader="(+43%) than last year"
+              chartData={[
+                { label: 'Italy', value: 400 },
+                { label: 'Japan', value: 430 },
+                { label: 'China', value: 448 },
+                { label: 'Canada', value: 470 },
+                { label: 'France', value: 540 },
+                { label: 'Germany', value: 580 },
+                { label: 'South Korea', value: 690 },
+                { label: 'Netherlands', value: 1100 },
+                { label: 'United States', value: 1200 },
+                { label: 'United Kingdom', value: 1380 },
+              ]}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Active Hotel Booking" total={1352831} color="info" icon={'fa6-solid:hotel'} />
+          <Grid item xs={12} md={6} lg={4}>
+            <AppCurrentSubject
+              title="Current Subject"
+              chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
+              chartData={[
+                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
+                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
+                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+              ]}
+              chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Active Rental Car Booking" total={1723315} color="info" icon={'bxs:car'} />
+          <Grid item xs={12} md={6} lg={8}>
+            <AppNewsUpdate
+              title="News Update"
+              list={[...Array(5)].map((_, index) => ({
+                id: faker.datatype.uuid(),
+                title: faker.name.jobTitle(),
+                description: faker.name.jobTitle(),
+                image: `/static/mock-images/covers/cover_${index + 1}.jpg`,
+                postedAt: faker.date.recent(),
+              }))}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Active Customer Order Forms" total={234} color="info" icon={'ri:customer-service-2-fill'} />
+          <Grid item xs={12} md={6} lg={4}>
+            <AppOrderTimeline
+              title="Order Timeline"
+              list={[...Array(5)].map((_, index) => ({
+                id: faker.datatype.uuid(),
+                title: [
+                  '1983, orders, $4220',
+                  '12 Invoices have been paid',
+                  'Order #37745 from September',
+                  'New order placed #XF-2356',
+                  'New order placed #XF-2346',
+                ][index],
+                type: `order${index + 1}`,
+                time: faker.date.past(),
+              }))}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Revenue Through Site" color="info" total={714000} icon={'ant-design:money-collect-filled'} />
+          <Grid item xs={12} md={6} lg={4}>
+            <AppTrafficBySite
+              title="Traffic by Site"
+              list={[
+                {
+                  name: 'FaceBook',
+                  value: 323234,
+                  icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} height={32} />,
+                },
+                {
+                  name: 'Google',
+                  value: 341212,
+                  icon: <Iconify icon={'eva:google-fill'} color="#DF3E30" width={32} height={32} />,
+                },
+                {
+                  name: 'Linkedin',
+                  value: 411213,
+                  icon: <Iconify icon={'eva:linkedin-fill'} color="#006097" width={32} height={32} />,
+                },
+                {
+                  name: 'Twitter',
+                  value: 443232,
+                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} height={32} />,
+                },
+              ]}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Revenue Through Golf Affiliate" total={1352831} color="info" icon={'fa6-solid:money-check-dollar'} />
+          <Grid item xs={12} md={6} lg={8}>
+            <AppTasks
+              title="Tasks"
+              list={[
+                { id: '1', label: 'Create FireStone Logo' },
+                { id: '2', label: 'Add SCSS and JS files if required' },
+                { id: '3', label: 'Stakeholder Meeting' },
+                { id: '4', label: 'Scoping & Estimations' },
+                { id: '5', label: 'Sprint Showcase' },
+              ]}
+            />
           </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Revenue Through Hotel Affiliate" total={1723315} color="info" icon={'fa6-solid:money-check-dollar'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Revenue Through Rental Car Affiliate" total={234} color="info" icon={'fa-solid:money-check'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary style={{cursor:"pointer"}} title="Revenue Through Customer Made Forms" total={234} color="info" icon={'emojione-monotone:money-bag'} />
-          </Grid>
-
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              {text}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, repudiandae!
-            </Typography>
-          </Box>
-          </Modal>
-
         </Grid>
       </Container>
     </Page>
-
   );
 }

@@ -1,65 +1,119 @@
-import React, { useCallback, useMemo } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { Button, Container, Typography, Box } from '@mui/material';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import TextField from '@mui/material/TextField';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
 
-const baseStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  transition: 'border .3s ease-in-out'
-};
+const Input = styled('input')({
+  display: 'none',
+});
 
-const activeStyle = {
-  borderColor: '#2196f3'
-};
+function CreateBlogHtml() {
+  const [htmlFile, sethtmlFile] = useState(null);
 
-const acceptStyle = {
-  borderColor: '#00e676'
-};
-
-const rejectStyle = {
-  borderColor: '#ff1744'
-};
-
-function DropzoneComponent(props) {
-  const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles);
-  }, []);
-
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject
-  } = useDropzone({
-    onDrop,
-    accept: 'image/jpeg, image/png'
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+    },
+    validationSchema: Yup.object().shape({
+      title: Yup.string().required('Title is Required'),
+      file: Yup.mixed().required('File is required'),
+    }),
+    onSubmit: async () => {
+      console.log(formik.values.title, htmlFile);
+      try {
+        await axios.post(
+          'https://aryaglobal2.herokuapp.com/blogpost',
+          // 'http://localhost:5000/blogpost',
+          {
+            type: 'html',
+            title: formik.values.title,
+            file: htmlFile,
+          },
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+          }
+        );
+        console.log('Successfully posted the blog');
+      } catch (err) {
+        console.log(err);
+      }
+    },
   });
 
-  const style = useMemo(() => ({
-    ...baseStyle,
-    ...(isDragActive ? activeStyle : {}),
-    ...(isDragAccept ? acceptStyle : {}),
-    ...(isDragReject ? rejectStyle : {})
-  }), [
-    isDragActive,
-    isDragReject,
-    isDragAccept
-  ]);
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  // };
 
   return (
-    <div {...getRootProps({style})}>
-      <input {...getInputProps()} />
-      <div>Drag and drop your images here.</div>
-    </div>
-  )
+    <Container sx={{ mt: 10 }}>
+      <Typography variant="h2" sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
+        Add your Blog post
+      </Typography>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          label="Blog Title"
+          id="filled-size-normal"
+          variant="filled"
+          sx={{ width: 500 }}
+          inputProps={{ style: { fontSize: 20 } }}
+          InputLabelProps={{ style: { fontSize: 20 } }}
+          type="text"
+          {...formik.getFieldProps('title')}
+          helperText={formik.touched.title && formik.errors.title}
+        />
+      </Box>
+      <Box
+        sx={{
+          width: '75%',
+          height: 150,
+          border: 3,
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          mx: 'auto',
+          borderRadius: 1,
+        }}
+      >
+        <Typography variant="h3" sx={{ display: 'flex', justifyContent: 'center' }}>
+          Upload HTML file
+        </Typography>
+
+        <Box sx={{ mt: 2, mx: 'auto' }}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="contained-button-file">
+            <Input accept=".html" id="contained-button-file" multiple type="file" />
+            <Button
+              variant="outlined"
+              component="span"
+              onClick={(e) => {
+                sethtmlFile(e.target.files[0]);
+              }}
+            >
+              <FileUploadIcon color="primary" style={{ fontSize: 50 }} />
+            </Button>
+          </label>
+        </Box>
+      </Box>
+      <div className="text-center">
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 5, mb: 2, width: '50%' }}
+          onClick={() => formik.handleSubmit()}
+        >
+          Post Blog
+        </Button>
+      </div>
+    </Container>
+  );
 }
 
-export default DropzoneComponent;
+export default CreateBlogHtml;

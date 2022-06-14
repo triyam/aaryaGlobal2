@@ -2920,7 +2920,6 @@ ol, ul {
   background: url('../img/main/small_slider_bg.png') no-repeat;
   background-size: cover;
   padding: 25px 0;
-  overflow: hidden;
 }
 .button_list a {
   background: #B82933;
@@ -2937,7 +2936,7 @@ ol, ul {
 .footer_nav a {
   color: #E6E6E6;
   font-family: Source Han Sans CN;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 300;
 }
 
@@ -3037,21 +3036,9 @@ ol, ul {
 
 
 
-/* .carousel-container {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  position: relative;
-  overflow: hidden;
-} */
-/* .carousel-container .overlay {
-  position:relative;
-  padding-top: 750px;
-      z-index:1;
-      height:100%;
-      width: 100%;
-      margin: 0 auto;
-} */
+
+
+
 
 
 

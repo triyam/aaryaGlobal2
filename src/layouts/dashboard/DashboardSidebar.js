@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
+import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
 // mock
 import account from '../../_mock/account';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
-
+import Logo from '../../dashboardComponents/Logo';
 import Scrollbar from '../../dashboardComponents/Scrollbar';
 import NavSection from '../../dashboardComponents/NavSection';
 //
@@ -54,7 +54,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   }, [pathname]);
 
   const renderContent = (
-
     <Scrollbar
       sx={{
         height: 1,
@@ -62,7 +61,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-      <img style={{padding:"2%", borderRadius:"7px"}} src="https://www.aaryaglobalconsulting.com/wp-content/uploads/2016/08/cropped-Logo-Aug16-1.png" alt="logo" />
+        <Logo />
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>

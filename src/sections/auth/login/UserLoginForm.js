@@ -43,7 +43,7 @@ export default function UserLoginForm() {
     onSubmit: () => {
       // handleSubmit(e);
       // SubmitHandler(e);
-      navigate('/userdashboard', { replace: true });
+      navigate('/dashboard', { replace: true });
     },
   });
 
@@ -69,6 +69,7 @@ export default function UserLoginForm() {
       axios
         .post(
           'https://aryaglobal2.herokuapp.com/user/signin',
+          // 'http://localhost:5000/user/signin',
           {
             email: values.email,
             password: values.password,
@@ -81,7 +82,7 @@ export default function UserLoginForm() {
           console.log('Login Successful!');
           localStorage.setItem('jwt', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
-          navigate('/userdashboard');
+          navigate('/dashboard');
         })
         .catch((error) => {
           console.log(error);
@@ -155,7 +156,7 @@ export default function UserLoginForm() {
             label="Remember me"
           />
 
-          <Link component={RouterLink} variant="subtitle2" to="#" underline="hover">
+          <Link component={RouterLink} variant="subtitle2" to="/userforgotpassword" underline="hover">
             Forgot password?
           </Link>
         </Stack>

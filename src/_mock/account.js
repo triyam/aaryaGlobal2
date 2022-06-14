@@ -1,9 +1,9 @@
 // ----------------------------------------------------------------------
 
 const account = {
-  displayName: 'Triyambaka Mishra',
-  email: '1929062@kiit.ac.in',
-  photoURL: 'https://avatars.githubusercontent.com/u/55938092?v=4',
+  displayName: 'Jaydon Frankie',
+  email: 'demo@minimals.cc',
+  photoURL: '/static/mock-images/avatars/avatar_default.jpg',
 };
 
 export default account;
