@@ -1,0 +1,14 @@
+.chip-wrapper {
+    width: max-content;
+    border-radius: 5px;
+    padding: 2px 5px;
+    background-color: #b9c95a;
+    margin: 0 5px 5px 0;
+    color: white;
+}
+
+.chip-text {
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+    margin: 0;
+}

@@ -14,9 +14,14 @@ const Main = () => (
         <img src={advanceSearch} alt="advanced-search" />
       </section>
 
-      <div className="d-flex justify-content-around mt-5 flex-wrap">
+      {/* <div className="d-flex justify-content-around mt-5 flex-wrap"> */}
+      <div className="row" >
+        <div className="col-lg-6 col-md-6 col-12">
         <MaterialForm />
-        <MaterialForm />
+        </div>
+        <div className="col-lg-6 col-md-6 col-12">
+        <MaterialForm2 />
+        </div>
       </div>
       {/* <Carousel/> */}
       <Map />

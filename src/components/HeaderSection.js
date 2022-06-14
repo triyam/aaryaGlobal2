@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import Carousel from 'react-elastic-carousel';
+// import Carousel from 'react-elastic-carousel';
 import k from '../assets/img/main/k.svg';
 import recoSubTtl from '../assets/img/main/reco_sub_ttl.svg';
 import lastSlide from '../assets/img/main/last_sldie.png';
@@ -10,6 +10,8 @@ import '../assets/css/style.css';
 import CarouselItem from './CarouselItem';
 
 import toppageHeaderText from '../assets/img/main/toppage-header-text.svg';
+import Carousel from "./carousel";
+import {bookItemList} from "./constants/book-list";
 
 const HeaderSection = () => {
   const breakPoints = [
@@ -18,6 +20,8 @@ const HeaderSection = () => {
     { width: 768, itemsToShow: 3 },
     { width: 1200, itemsToShow: 4 },
   ];
+  const [bookList, setBookList] = useState(bookItemList);
+
   return (
     <>
       <div>
@@ -113,7 +117,7 @@ const HeaderSection = () => {
         </section>
         <div className="carousel-container">
           <div className="overlay">
-            <Carousel breakPoints={breakPoints}>
+            {/* <Carousel breakPoints={breakPoints}>
               <CarouselItem>
                 <img src={lastSlide} alt="" />
               </CarouselItem>
@@ -150,7 +154,10 @@ const HeaderSection = () => {
               <CarouselItem>
                 <img src={lastSlide} alt="" />
               </CarouselItem>
-            </Carousel>
+            </Carousel> */}
+            <Carousel
+              list={bookList}
+            />
           </div>
         </div>
       </div>
